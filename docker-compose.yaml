@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql_express
+    environment:
+      SA_PASSWORD: "Superstrongpassword123@"  
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"      
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+      - ./dataset:/tmp/dataset
+    restart: always
+
+volumes:
+  sql_data:
